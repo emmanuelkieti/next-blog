@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Button from "@/app/components/button";
 import { blogData } from '@/app/data/blogData';
 
-
 export default function Post({params}){
   const slug = params.slug;
 
@@ -10,7 +9,7 @@ export default function Post({params}){
     if(x.title == slug)
       return(
         <>
-            <a href="/" className='ml-3'><Button>Back to Home page</Button></a>
+            <Link href="/" className='ml-3'><Button>Back to Home page</Button></Link>
             <div>
               <article className='mt-5 m-auto w-5/6'>
                 <h1 className='font-bold'>{x.title[0].toUpperCase()}{x.title.slice(1)}</h1>
@@ -23,7 +22,7 @@ export default function Post({params}){
     return(
       <>
             <Link href="/"><Button>Back to Home page</Button></Link>
-            <p>Sorry, there is no such post yet.</p>
+            <p>404, there is no such post yet.</p>
       </>
     );
 }

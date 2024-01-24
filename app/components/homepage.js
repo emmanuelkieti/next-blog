@@ -2,30 +2,8 @@ import Link from 'next/link';
 import Button from './button.js';
 import { blogData } from '../data/blogData';
 import { useState } from 'react';
-
-function SearchOperation({handleSearch}){
-  let [searchKeyword, setsearchKeyword] = useState("");
-  return (
-    <>
-        <input onChange={(e)=>setsearchKeyword(e.target.value)} className="p-1 border border-black mt-3 ml-5" 
-        placeholder="enter a keyword..." />
-        <button className='p-1 text-white bg-green-900 hover:bg-green-500'
-          onClick={ ()=>handleSearch(searchKeyword) }>Search</button>
-    </>
-  );
-}
-
-function Pagination({numberOfPages, handlePaginationClick}){
-  let pageLinks = [];
-  for(let i = 1; i <= numberOfPages; i++)
-    pageLinks.push(<li key={i} className='inline m-3 cursor-pointer' 
-    onClick={()=>handlePaginationClick(i)}>{i}</li>);
-  return(
-    <div className='mt-5 ml-5'>
-      <ul>{pageLinks}</ul>
-    </div>
-  );
-}
+import SearchOperation from './searchOperation.js';
+import Pagination from './pagination.js';
 
 export default function HomePage(){
   const [searchWord, setsearchWord] = useState("");
@@ -40,8 +18,7 @@ export default function HomePage(){
   const handlePaginationClick = (pageNumber)=> {setpageNumber({
     start: (pageNumber-1)*3,
     end: pageNumber*3
-  });console.log(pageNumber)};
-
+  })};
   
   let allBlogs;//use this variable to render blogposts
   if(!blogs.length){
